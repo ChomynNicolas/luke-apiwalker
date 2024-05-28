@@ -1,22 +1,37 @@
-import React from "react";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
+export default function Contenido() {
+  const {id} = useParams();
+  const [contenidoId, setcontenidoId] = useState();
 
-export default function Contenido(props) {
+  useEffect(() => {
+    axios.get(`https://swapi.dev/api/people/${id}`)
+    .then(({data})=>{
+      setcontenidoId(data);
+
+    })
+    .catch((error)=>{
+      console.log("Error de busqueda");
+
+    })
   
+    
+  }, [])
   
+    console.log(contenidoId);
 
-  
-
-
-
-  return (<>
-          {props.cont?
+  return (
+    <div>
+      {contenidoId?
           <div>
-            <h1>{props.cont.name}</h1>
-            <p>Altura: {props.cont.height}</p>
-            <p>Peso: {props.cont.mass}</p>
-            <p>Genero: {props.cont.gender}</p>
-          </div>:props.cont===false?<div>Estos no son los droides que está buscando</div>:""}
-          
-          </>);
+            <h1>{contenidoId.name}</h1>
+            <p>Altura: {contenidoId.height}</p>
+            <p>Peso: {contenidoId.mass}</p>
+            <p>Genero: {contenidoId.gender}</p>
+          </div>:""}
+
+    </div>
+  )
 }

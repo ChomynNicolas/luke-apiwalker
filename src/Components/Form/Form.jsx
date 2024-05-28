@@ -47,6 +47,16 @@ export default function Form(props) {
               <button type="submit">Buscar</button>
             </form>
 
+
+
+            {props.cont.contenido?
+          <div>
+            <h1>{props.cont.contenido.name}</h1>
+            <p>Altura: {props.cont.contenido.height}</p>
+            <p>Peso: {props.cont.contenido.mass}</p>
+            <p>Genero: {props.cont.contenido.gender}</p>
+          </div>:props.cont.contenido===false?<div>Estos no son los droides que está buscando</div>:""}
+
           </div>
     );
 }

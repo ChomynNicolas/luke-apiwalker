@@ -1,7 +1,9 @@
 import { useState } from "react";
 import "./App.css";
 import Form from "../Form/Form";
+import { Route, Routes } from "react-router-dom";
 import Contenido from "../Contenido/Contenido";
+
 
 
 function App() {
@@ -13,18 +15,18 @@ function App() {
   
   return (
     <>
-      
-
-        <Form
+      <Routes>
+        <Route path="/" element={<Form
     añadirCont={{
       setselected,
       setidSearch,
       setcontenido,
     }}
     cont={{ selected, idSearch, contenido }}
-  />
-      
-      <Contenido cont={contenido}/>
+  />}/>
+        <Route path="/:id" element={<Contenido/>} />
+      </Routes>
+
 
 
       
